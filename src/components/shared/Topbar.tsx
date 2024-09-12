@@ -1,19 +1,23 @@
-import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
+import { INITIAL_USER, useUserContext } from "@/context/AuthContext";
 import { useLogoutAccount } from "@/lib/react-query/queriesAndMutations";
-import { useUserContext } from "@/context/AuthContext";
+import Loader from "./Loader";
 
-function Topbar() {
+const Topbar = () => {
   const navigate = useNavigate();
-  const { user } = useUserContext();
-  const { mutate: logout, isSuccess } = useLogoutAccount();
+  const { user, setUser, setIsAuthenticated, isLoading } = useUserContext();
+  const { mutate: logout } = useLogoutAccount();
 
-  useEffect(() => {
-    if (isSuccess) {
-      navigate(0);
-    }
-  }, [isSuccess]);
+  const handleLogout = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    logout();
+    setIsAuthenticated(false);
+    setUser(INITIAL_USER);
+    navigate("/login");
+  };
 
   return (
     <section className="topbar">
@@ -21,7 +25,7 @@ function Topbar() {
         <Link to="/" className="flex gap-3 items-center">
           <img
             src="/assets/images/logo.svg"
-            alt="Snapgram logo"
+            alt="logo"
             width={130}
             height={325}
           />
@@ -31,21 +35,27 @@ function Topbar() {
           <Button
             variant="ghost"
             className="shad-button_ghost"
-            onClick={() => logout()}
+            onClick={handleLogout}
           >
             <img src="/assets/icons/logout.svg" alt="logout" />
           </Button>
-          <Link to={`/profile/${user.id}`} className="flex-center gap-3">
-            <img
-              src={user.imageUrl || "/assets/icons/profile-placeholder.svg"}
-              alt="profile"
-              className="h-8 w-8 rounded-full"
-            />
-          </Link>
+          {isLoading || !user.email ? (
+            <div className="h-14">
+              <Loader />
+            </div>
+          ) : (
+            <Link to={`/profile/${user.id}`} className="flex-center gap-3">
+              <img
+                src={user.imageUrl || "/assets/icons/profile-placeholder.svg"}
+                alt="profile"
+                className="h-8 w-8 rounded-full"
+              />
+            </Link>
+          )}
         </div>
       </div>
     </section>
   );
-}
+};
 
 export default Topbar;
