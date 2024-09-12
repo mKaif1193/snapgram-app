@@ -48,7 +48,7 @@ function PostStats({ post, userId }: PostStatsProps) {
     }
 
     setLikes(newLikes);
-    likePost({ postId: post.$id, likesArray: newLikes });
+    likePost({ postId: post!.$id, likesArray: newLikes });
   };
 
   const handleSavePost = (e: React.MouseEvent) => {
@@ -58,7 +58,7 @@ function PostStats({ post, userId }: PostStatsProps) {
       setIsSaved(false);
       deleteSavedPost(savedPostRecord.$id);
     } else {
-      savePost({ postId: post.$id, userId: userId });
+      savePost({ postId: post!.$id, userId: userId });
       setIsSaved(true);
     }
   };
