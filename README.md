@@ -21,14 +21,17 @@ Snapgram is a social media photo-sharing app inspired by Instagram, built with *
 - Profile management with bio and avatar
 - Explore section to discover other users
 - Responsive design for both mobile and desktop
+- Optimized Data Fetching using TanStack Query
+- Built-in Cloud Storage and Database using Appwrite
 
 ## Technologies Used
 
 ### Frontend:
 
 - **React.js**: JavaScript library for building user interfaces
-- **Context API**: For state management
+- **TanStack Query**: For server state management
 - **Tailwind CSS**: For styling the UI
+- **Shadcn UI**: For UI components
 - **React Router**: For navigation between pages
 
 ### Backend:
@@ -44,6 +47,11 @@ Snapgram is a social media photo-sharing app inspired by Instagram, built with *
 - **Postman**: For testing APIs
 - **Git**: For version control
 
+- LinkedIn: [your-linkedin](https://linkedin.com/in/your-profile).
+
 ## Contact
 
-For any inquiries or feedback, please reach out at [muhammadkaif1193@gmail.com](mailto:muhammadkaif1193@gmail.com).
+For any questions or feedback, feel free to reach out:
+
+- Email: [muhammadkaif1193@gmail.com](mailto:muhammadkaif1193@gmail.com)
+- LinkedIn: [Muhammad Kaif](https://www.linkedin.com/in/muhammad-kaif-059a53261)
